@@ -1,0 +1,11 @@
+<h1 style="text-align: center;color: red">Calculator</h1>
+<input  placeholder="Enter a" [(ngModel)]="a" style="margin-right: 5px">
+<input  placeholder="Enter b" [(ngModel)]="b">
+<br> <br>
+<button (click)="cong()">+</button>
+<button (click)="tru()">-</button>
+<button (click)="nhan()">*</button>
+<button (click)="chia()">/</button>
+<br><br>
+<input value="{{result}}" readonly>
+

@@ -1,0 +1,14 @@
+<h1 style="text-align: center;color: red;">Color Picker</h1>
+
+<div>
+  <label>Vui lòng chọn màu nền: </label>
+  <select #element  (change) = "changeColor(element.value)" >
+    <option value="">--Chọn màu--</option>
+    <option value="Đỏ">Đỏ</option>
+    <option value="Cam">Cam</option>
+    <option value="Vàng">Vàng</option>
+    <option value="Lục">Lục</option>
+    <option value="Lam">Lam</option>
+  </select>
+  <div [style.backgroundColor]="color" style="height: 50px"></div>
+</div>

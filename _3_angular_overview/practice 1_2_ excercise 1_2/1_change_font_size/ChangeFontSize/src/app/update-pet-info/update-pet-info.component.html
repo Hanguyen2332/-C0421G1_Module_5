@@ -1,0 +1,21 @@
+<h1 style="color: red;text-align: center" >Introduce Pet</h1>
+<!--  change info-->
+<div>
+  <p>Input Dog's name:</p>
+  <input type="text" [(ngModel)]="pet.name">
+  <p>Input Dog's image:</p>
+  <input type="url" [(ngModel)]="pet.image">
+</div>
+<div style="margin-left: 300px; font-size: 40px">
+<!--  display-->
+  <table>
+    <tr>
+      <th>Name:</th>
+      <td>{{pet.name}}</td>
+    </tr>
+    <tr>
+      <th>Avatar:</th>
+      <td><img [src]="pet.image" alt="" width="350px" height="450px"></td>
+    </tr>
+  </table>
+</div>

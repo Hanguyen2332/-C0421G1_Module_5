@@ -1,0 +1,8 @@
+<!--C1: EVENT-->
+<!--<input #element type="range"  min="9" max="72" value="18" (change)="changeFontsize(element.value)">-->
+<!--<p [style.fontSize.px]="mySize" >Say hello</p>-->
+
+<!--C2: 2 Way binding-->
+<input type="range"  min="9" max="72" value="18" [(ngModel)] = "mySize" >
+<p [style.fontSize.px]="mySize">Say hello</p>
+
