@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+
+<h2 style="color: blue;margin-left: 50px">Today's article</h2>
+<hr>
+<div class="container-fluid">
+  <div class="row p-2">
+<!--    display-->
+    <div class="col-md-8">
+      <table class="table" border="1">
+        <tbody>
+        <tr *ngFor="let item of articleArr, let i = index ">
+          <td>{{i+1}}</td>
+          <td><a [href]="item.url" href ="{{item.url}}" target="_blank">{{item.title}}</a></td>
+          <td>{{item.createDate | date }}</td>
+          <td><app-like></app-like></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+<!--    create new-->
+    <div class="col-md-4 bg-light">
+      <h3 style="text-align: center;color: orangered">Create new article</h3>
+<!--Note: KHONG dùng form. Vì: nếu form không có action ="" -> trang f5 -> dữ liệu quay về như ban đầu strart server-->
+        <label for="title">Enter title</label>
+        <input type="text" class="form-control" id="title" #newTitle>
+        <label for="url">Enter URL: </label>
+        <input type="text" class="form-control" id="url" #newUrl>
+        <button class="btn btn-warning mt-3" (click)="addArticle(newTitle.value,newUrl.value)" style="margin-left:175px">Add</button>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
