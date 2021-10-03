@@ -1,0 +1,19 @@
+<h1>Rating Bar</h1>
+<div *ngIf="showRatingValueChild" >
+ {{ ratingValueChild }}
+</div>
+
+<div class="rating-bar" (mouseleave)="reset()">
+  <div class="rating-unit">
+    <button class="btn btn-outline-warning btn-light m-1"
+            [class.active]="item.active"
+            *ngFor="let item of ratingUnits; let i = index"
+            (click)="select(i)" (mouseenter)="enter(i)">
+      {{ item.value }}  <!--key: _ ,value: i+1 -> item.value: 1 2 3 4 5 6 7 8 9 10-->
+    </button>
+  </div>
+</div>
+<!--mouseenter() = enter(i): event -> rê chuột QUA các button (chưa nhấn chọn) -> chuyển hết sang màu vàng-->
+<!--mouseleave() = reset() : event -> rê chuột KHỎI button -> ô màu vàng reset lại về màu mặc định (xám)-->
+<!--(click) = select(i):     event -> nhấn chọn button -> tô màu vàng cho ô đã chọn-->
+<!--[class.active]="item.active" : -> = class = "active" -> highlight button hiện đã chọn-->
