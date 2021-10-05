@@ -1,0 +1,21 @@
+
+<h1 style="color: blue; text-align: center; margin-bottom: 10px">Login Form</h1>
+<form [formGroup] = "loginForm" (ngSubmit)="onSubmit()" class="w-50 m-auto">
+  <!--  email-->
+  <div class="form-group">
+    <label for="email">Email: </label>
+    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
+    <p style="color: red" id="emailHelp" *ngIf="loginForm.controls.email?.invalid">
+      Nhập email đúng định dạng: 'email@gmail.com'
+    </p>
+  </div>
+  <!--  password-->
+    <label for="password">Password</label>
+    <input type="text" class="form-control" id="password" formControlName="password" name="password">
+    <!--validate-->
+    <div style="color:red;" *ngIf="loginForm.get('password')?.errors?.minlength && loginForm.controls.password?.dirty">
+        Password's length >= 6
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <pre>Form value: {{loginForm.value | json}}</pre>
+</form>
