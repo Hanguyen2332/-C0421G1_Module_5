@@ -1,0 +1,12 @@
+<h2 style="text-align: center; color: red">Youtube Song Playlist</h2>
+<table class="table">
+  <tbody>
+  <tr *ngFor="let item of playlist, let i = index ">
+    <td>{{i+1}}</td>
+    <td><a [routerLink]="['/youtube', item.id]">{{item.name}}</a></td>
+  </tr>
+  </tbody>
+</table>
+
+<!--bung (LOAD THÊM) view của copmonent con TRONG VIEW CỦA CHA-->
+<router-outlet></router-outlet>

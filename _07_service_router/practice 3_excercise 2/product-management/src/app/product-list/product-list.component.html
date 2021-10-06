@@ -1,0 +1,30 @@
+<nav><h1 style="color:blue;">Danh sách sản phẩm</h1></nav>
+<!--nút create: -->
+<a [routerLink]="['/product/create']" style="color: white" class="btn bg-info mb-1" role="button">Create Product</a>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>STT</th>
+      <th>Tên</th>
+      <th>Giá</th>
+      <th>Mô tả</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <tr *ngFor="let product of products; index as i">
+      <td>{{i + 1}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.description}}</td>
+      <td>
+        <a [routerLink]="['product/edit/',product.id]" style="color: white" class="btn bg-info" role="button">Edit</a>
+        <a [routerLink]="['product/delete/',product.id]" style="color: white" class="btn bg-danger" role="button" data-toggle="modal" data-target="#modelId">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+<router-outlet></router-outlet>
+
+
