@@ -1,0 +1,131 @@
+{
+  "customerTypes": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ],
+  "customerList": [
+    {
+      "id": 1,
+      "code": "KH-0001",
+      "name": "Nguyễn Tiến Luật",
+      "dayOfBirth": "1991-11-11",
+      "gender": true,
+      "idCard": "11122233344",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "customerType": {
+        "id": "3",
+        "name": "Gold"
+      }
+    },
+    {
+      "id": 2,
+      "code": "KH-0002",
+      "name": "Lê Nhật Hạ",
+      "dayOfBirth": "1989-01-01",
+      "gender": false,
+      "idCard": "11122143344",
+      "phone": "0901021345",
+      "email": "nhattan@gmail.com",
+      "address": "Quảng Bình",
+      "customerType": {
+        "id": "5",
+        "name": "Diamond"
+      }
+    },
+    {
+      "id": 3,
+      "code": "KH-0003",
+      "name": "Nguyễn Tiến Luật",
+      "dayOfBirth": "1976-05-01",
+      "gender": true,
+      "idCard": "11000143344",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "customerType": {
+        "id": 2,
+        "name": "Platinum"
+      }
+    },
+    {
+      "id": 4,
+      "code": "KH-5555",
+      "name": "Nguyễn Tiến Luật",
+      "dayOfBirth": "1995-10-05",
+      "gender": "0",
+      "idCard": "12465870000",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      }
+    },
+    {
+      "id": 5,
+      "code": "DV-5555",
+      "name": "Nguyễn Tiến Luật",
+      "dayOfBirth": "",
+      "gender": "",
+      "idCard": "",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "customerType": {
+        "id": 2,
+        "name": "Platinum"
+      }
+    },
+    {
+      "id": 6,
+      "code": "DV-000",
+      "name": "NAAA",
+      "dayOfBirth": "2021-10-07",
+      "gender": "0",
+      "idCard": "12465870000",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "customerType": {
+        "id": 1,
+        "name": "Diamond"
+      }
+    },
+    {
+      "id": 9,
+      "code": "KH-0001",
+      "name": "Nguyễn Tiến Thành",
+      "dayOfBirth": "1997-01-11",
+      "gender": "1",
+      "idCard": "12465870000",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "customerType": {
+        "id": 4,
+        "name": "Silver"
+      }
+    }
+  ]
+}

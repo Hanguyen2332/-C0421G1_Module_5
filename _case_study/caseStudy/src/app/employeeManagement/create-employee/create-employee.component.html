@@ -1,0 +1,127 @@
+<!--home: welcome-->
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+  <a href="/employee">Back to Home Page</a>
+
+  <!--  th:object="${empDtoObj}" ->  con -> cha -->
+  <form action="@{/employee/create}" method="post">
+    <div class="form-group">
+      <table class="w-50 m-auto">
+        <tr>
+          <td></td>
+          <td>
+            <h3 style="text-align: center;color: blue">Create new Employee</h3>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="name">Name:</label></td>
+          <td>
+            <input class="form-control" id="name"/>
+            <!--            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="dayOfBirth">Date of birth:</label></td>
+          <td>
+            <input type="date" class="form-control" id="dayOfBirth"/>
+            <!--            <div class="message" id="dateMess"></div>-->
+            <!--            <div th:if="${#fields.hasErrors('dayOfBirth')}" th:errors="*{dayOfBirth}" class="message"></div>-->
+          </td>
+        </tr>
+        <tr>
+          <td><label for="idCard">ID Card: </label></td>
+          <td>
+            <input class="form-control" id="idCard"/>
+            <!--            <div th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}" class="message"></div>-->
+          </td>
+        </tr>
+        <tr>
+          <td><label for="email">Email:</label></td>
+          <td>
+            <input id="email" class="form-control"/>
+            <!--            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="message"></div>-->
+          </td>
+        </tr>
+        <tr>
+          <td><label for="phone">Phone: </label></td>
+          <td>
+            <input id="phone" class="form-control"/>
+            <!--            <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="message"></div>-->
+          </td>
+        </tr>
+        <tr>
+          <td><label for="salary">Salary:</label></td>
+          <td>
+            <input id="salary" class="form-control" oninput="checkSalary()" id="salary"/>
+            <!--            <div id="salaryMess" class="message"></div>-->
+            <!--                        <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="address">Address:</label></td>
+          <td>
+            <input id="address" class="form-control"/>
+            <!--            <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="message"></div>-->
+          </td>
+        </tr>
+
+
+        <tr>
+          <td><label for="division">Division:</label></td>
+          <td>
+            <select id="division" class="custom-select">
+              <option>Sale – Marketing</option>
+              <option>Hành Chính</option>
+              <option>Phục vụ</option>
+              <option>Quản lý</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="position">Position:</label></td>
+          <td>
+            <select class="custom-select" id="position">
+              <option>Phục vụ</option>
+              <option>Lễ tân</option>
+              <option>Quản lý</option>
+              <option>Giám đốc</option>
+              <option>Chuyên viên</option>
+              <option>Giám sát</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="eduDegree">Edu Degree:</label></td>
+          <td>
+            <select class="custom-select" id="eduDegree">
+              <option>Trung cấp</option>
+              <option>Cao đẳng</option>
+              <option>Đại học</option>
+              <option>Sau đại học</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="username">Username:</label></td>
+          <td>
+            <input class="form-control" id="username"/>
+            <!--            <div th:if="${#fields.hasErrors('user')}" th:errors="*{user}" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td style="text-align: center">
+            <button type="submit" class="btn btn-primary mt-3">Create</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>

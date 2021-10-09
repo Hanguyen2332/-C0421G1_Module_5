@@ -1,0 +1,82 @@
+<!--home: welcome-->
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+  <a href="/">Back to Home Page</a>
+
+<!--  th:object="${contrDtoObj} -->
+  <form action="@{/contract/contract/create}"  method="post">
+    <div class="form-group">
+      <table class="w-50 m-auto">
+        <tr>
+          <td></td>
+          <td>
+            <h3 style="text-align: center;color: blue">Create new Contract</h3>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="customer">Customer Name:</label></td>
+<!-- cho chọn trong customerList    xem lại: nếu tên trùng?-->
+          <td>
+            <select id="customer" class="custom-select">
+            <option></option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="employees">Employee Name:</label></td> <!-- cho chọn trong customerList    xem lại: nếu tên trùng?-->
+          <td>
+            <select id="employees" class="custom-select">
+            <option></option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="service">Service Name:</label></td><!-- cho chọn trong customerList    xem lại: nếu tên trùng?-->
+          <td>
+            <select id="service" class="custom-select">
+            <option></option>
+            </select>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td><label for="deposit">Deposit:</label></td>
+          <td>
+            <input id="deposit" class="form-control" id="deposit"/>
+<!--            <div id="depositMess" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="startDate">Start Date:</label></td>
+          <td>
+            <input type="date" class="form-control" id="startDate"/>
+<!--            <div class="message" id="startDateMess"></div>-->
+<!--            <div th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="endDate">End Date:</label></td>
+          <td>
+            <input type="date"  class="form-control" id="endDate"/>
+<!--            <div class="message" id="endDateMess"></div>-->
+<!--            <div th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td style="text-align: center">
+            <button type="submit" class="btn btn-primary mt-3">Create</button>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </form>
+</div>

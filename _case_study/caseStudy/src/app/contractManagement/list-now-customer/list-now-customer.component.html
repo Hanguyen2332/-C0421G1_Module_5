@@ -1,0 +1,92 @@
+<!--home: welcome-->
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<!--list-->
+<div style="text-align: center;margin: 20px 0 20px 0">
+  <h2 style="color: dodgerblue;text-align: center">CUSTOMERS ARE USING SERVICE</h2>
+</div>
+
+
+<!--th:unless="${nowCusList.isEmpty()}" -> *ngIf="nowContractArray, else emptyContractNow"-->
+<!--<h4 style="font-style: italic">Hiện do covid-19 nên chúng tôi đã giải tán khách!</h4>-->
+<!--<h4 style="font-style: italic">Quyết thắng!!!</h4>-->
+<div>
+  <table class="table table-bordered table-striped" style="overflow-x: scroll;max-width: 100%;display: inline-block">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Full name</th>
+      <th>Code</th>
+      <th>Day of birth</th>
+      <th>ID Card</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Address</th>
+      <th>Customer type</th>
+      <!--            service infor-->
+      <th>Service Name</th>
+      <!--            contract infor-->
+      <th>Start Date</th>
+      <th>End Date</th>
+
+      <th>Dịch vụ đi kèm</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <!-- th:each="contrObj,loopStatus: ${nowCusList}" -> *ngFor="let item of Array, let i = index"  + bảng DV đi kèm + bảng ContractDetail-->
+    <tr>
+      <!--    <tr th:each="contrObj,loopStatus: ${nowCusList}">-->
+      <!--      <td th:text="${loopStatus.count}"></td>-->
+      <!--      <td th:text="${contrObj.customer.name}"></td>-->
+      <!--      <td th:text="${contrObj.customer.code}"></td>-->
+      <!--      <td th:text="${contrObj.customer.dayOfBirth}"></td>-->
+      <!--      <td th:text="${contrObj.customer.idCard}"></td>-->
+      <!--      <td th:text="${contrObj.customer.email}"></td>-->
+      <!--      <td th:text="${contrObj.customer.phone}"></td>-->
+      <!--      <td th:text="${contrObj.customer.address}"></td>-->
+      <!--      <td th:text="${contrObj.customer.customerType.typeName}"></td>-->
+      <!--      &lt;!&ndash;            service infor&ndash;&gt;-->
+      <!--      <td th:text="${contrObj.service.serviceName}"></td>-->
+      <!--      &lt;!&ndash;            contract infor&ndash;&gt;-->
+      <!--      <td th:text="${contrObj.startDate}"></td>-->
+      <!--      <td th:text="${contrObj.endDate}"></td>-->
+      <!--      &lt;!&ndash;            dvu di kem&ndash;&gt;-->
+      <!--      <td>-->
+      <!--        <div th:each="item: ${contrObj.contractDetailList}">-->
+      <!--          <span th:text="${item.attachService.name}"></span>-->
+      <!--        </div>-->
+      <!--      </td>-->
+    </tr>
+    </tbody>
+  </table>
+  <!--  phan trang-->
+
+</div>
+
+<!--delete modal-->
+<div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác nhận xóa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/service/delete">
+        <input type="hidden" name="id" id="idObjDel">
+        <div class="modal-body">
+          Ban co muon xoa
+          <span style="color:red;" id="nameObjDel"></span>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">OK</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

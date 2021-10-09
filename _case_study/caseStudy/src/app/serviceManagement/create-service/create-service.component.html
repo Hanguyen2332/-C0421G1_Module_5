@@ -1,0 +1,118 @@
+<!--home: welcome-->
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<div class="container mt-3">
+  <a href="/customer">Back to Home Page</a>
+
+  <!-- th:object="${serDtoObj}" -> con - cha-->
+  <form action="@{/service/create}" method="post">
+    <div class="form-group">
+      <table class="w-50 m-auto">
+        <tr>
+          <td></td>
+          <td>
+            <h3 style="text-align: center;color: blue">Create new Service</h3>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="name">Service name:</label></td>
+          <td>
+            <input class="form-control" id="name" oninput="checkName()"/>
+            <!--            <div id="nameMess" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="code">Code:</label></td>
+          <td>
+            <input class="form-control" id="code"/>
+            <!--            <div id="codeMess" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="area">Area:</label></td>
+          <td>
+            <input class="form-control" id="area"/>
+            <!--            <div id="areaMess" class="message"></div>-->
+          </td>
+        </tr>
+        <tr>
+          <td><label for="floor">Floor:</label></td>
+          <td>
+            <input type="number" class="form-control" id="floor"/>
+            <!--            <div id="floorMess" class="message"></div>-->
+          </td>
+        </tr>
+        <tr>
+          <td><label for="maxPeople">Max people:</label></td>
+          <td>
+            <input class="form-control" id="maxPeople"/>
+            <!--            <div id="maxPeopleMess" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="poolArea">Pool area:</label></td>
+          <td>
+            <input class="form-control" id="poolArea"/>
+            <!--            <div id="poolAreaMess" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="standardRoom">Standard room: </label></td>
+          <td>
+            <input class="form-control" id="standardRoom"/>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="rentType">Rent type:</label></td>
+          <td>
+            <select id="rentType" class="custom-select">
+              <option>HOUR</option>
+              <option>DAY</option>
+              <option>MONTH</option>
+              <option>YEAR</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="serviceType">Service type:</label></td>
+          <td>
+            <select id="serviceType" class="custom-select">
+              <option>Villa</option>
+              <option>House</option>
+              <option>Room</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="otherConvenienceDes">Other convenience:</label></td>
+          <td>
+            <input id="otherConvenienceDes" class="form-control"/>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="price">Price:</label></td>
+          <td>
+            <input class="form-control" id="price"/>
+            <!--            <div id="priceMess" class="message"></div>-->
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td style="text-align: center">
+            <button type="submit" class="btn btn-primary mt-3">Create
+            </button>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </form>
+</div>

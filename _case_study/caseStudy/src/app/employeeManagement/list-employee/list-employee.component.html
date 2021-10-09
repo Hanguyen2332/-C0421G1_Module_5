@@ -1,0 +1,95 @@
+<!--home: welcome-->
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<!--list-->
+<div style="text-align: center;margin: 20px 0 20px 0">
+  <h2 style="color: dodgerblue;text-align: center">EMPLOYEE MANAGEMENT</h2>
+</div>
+
+<!--nut create + search-->
+<!--<div style="margin: 20px 0 20px 0;display: flex; padding-left: 460px" class="row">-->
+<!--    <div class="m-0">-->
+<!--        <form class="form-inline my-lg-0" th:action="@{/employee/find}">-->
+<!--            <input name="keyword" class="form-control btn-outline-primary my-2" type="search" placeholder="Search by keyword" aria-label="Search">-->
+<!--            <button class="btn btn-warning my-2" type="submit" style="margin-left:5px">Search</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <a th:href="@{/employee/create}" class="btn" style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px" >Create new</a>-->
+<!--</div>-->
+
+
+<!--nut create + search-->
+<form class="form-inline my-lg-2" action="@{/employee/find}">
+  <ul class="nav ">
+    <li class="nav-item">
+      <input name="keyword" class="form-control bg-white btn-warning my-2" type="search"
+             placeholder="Search by keyword" aria-label="Search" >
+    </li>
+    <li class="nav-item">
+      <button class="btn btn-warning my-2" type="submit" style="margin-left:5px">Search</button>
+    </li>
+    <li class="nav-item">
+      <a href="@{/employee/create}" class="btn"
+         style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px">Create new</a>
+
+    </li>
+  </ul>
+</form>
+
+<!--th:unless="${employeeList.isEmpty()}" -> *ngIf="employeeArray, else emptyEmployee"-->
+<div class="row" style="padding-left: 1px">
+  <div>
+    <table class="table table-bordered table-striped" style="max-width: 100%;overflow-x: scroll;display: inline-block">
+      <thead>
+      <tr>
+        <th>No</th>
+        <th>ID</th>
+        <th>Full name</th>
+        <th>Day of birth</th>
+        <th>ID Card</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+
+        <th>UserName</th>
+        <th>Division</th>
+        <th>Diploma</th>
+        <th>Position</th>
+
+        <th>Salary</th>
+        <th>Address</th>
+
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+
+<!--      th:each="empObj,loopStatus: ${employeeList}" -> *ngFor="let item of Array, let i = index"  + IEmployee-->
+      <tr >
+<!--        <td th:text="${loopStatus.count}"></td>-->
+<!--        <td th:text="${empObj.id}"></td>-->
+<!--        <td th:text="${empObj.name}"></td>-->
+<!--        <td th:text="${empObj.dayOfBirth}"></td>-->
+<!--        <td th:text="${empObj.idCard}"></td>-->
+<!--        <td th:text="${empObj.email}"></td>-->
+<!--        <td th:text="${empObj.phone}"></td>-->
+<!--        <td th:text="${empObj.user.userName}"></td>-->
+<!--        <td th:text="${empObj.division.name}"></td>-->
+<!--        <td th:text="${empObj.eduDegree.name}"></td>-->
+<!--        <td th:text="${empObj.position.name}"></td>-->
+<!--        <td th:text="${empObj.salary}"></td>-->
+<!--        <td th:text="${empObj.address}"></td>-->
+        <td style="display: flex">
+          <a href="@{/employee/edit/__${empObj.id}__}" class="btn " role="button" style="margin-right: 5px;color: white;background-color: dodgerblue">Edit</a>
+          <button type = "button" class="btn btn-danger" data-target="#modalId" data-toggle="modal">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+<!--phan trang-->
+  </div>
+
+</div>
+
+<!--delete modal-->
+

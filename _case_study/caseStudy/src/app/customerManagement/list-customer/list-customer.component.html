@@ -1,0 +1,95 @@
+<!--&lt;!&ndash;home: welcome&ndash;&gt;-->
+<!--<app-header></app-header>-->
+<!--<app-navbar></app-navbar>-->
+
+<!--list-->
+<div style="text-align: center;margin: 20px 0 20px 0">
+  <h2 style="color: dodgerblue;text-align: center">CUSTOMER MANAGEMENT</h2>
+</div>
+
+<!--th:if="${customerList.isEmpty()}"-->
+<!--<div style="color: red;margin: 20px; padding-left: 30px">-->
+<!--  <h4>List Customer is empty! Click button to create new!</h4>-->
+<!--</div>-->
+<!--message-->
+<p style="color: red; padding-left: 30px"></p>
+
+<!--nut create + search-->
+<!--<form class="form-inline my-lg-2" action="/customer">-->
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/customer/create']" class="btn"
+       style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px">Create new</a>
+<!--    <a class="navbar-brand">Navbar</a>-->
+    <div class="d-flex">
+          <input name="name" class="form-control bg-white btn-warning my-2" type="search"
+                 placeholder="Search by name" aria-label="Search">
+
+        <!--    loại khách hàng: select-option -> ngFor - "cusTypeList" -->
+          <select class="custom-select bg-white btn-warning" name="cusTypeId" style="margin-top: 8px">
+            <option value="">--Chọn loại khách hàng--</option>
+            <option >Diamond</option>
+            <option >Platinum</option>
+            <option >Gold</option>
+            <option >Silver</option>
+            <option >Member</option>
+          </select>
+          <button class="btn btn-warning my-2" type="submit" style="margin-left:5px">Search</button>
+    </div>
+  </div>
+</nav>
+<!--</form>-->
+
+<!--th:unless="${customerList.isEmpty()}"-->
+<div *ngIf="customerList">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>ID</th>
+      <th>Full name</th>
+      <th>Code</th>
+      <th>Day of birth</th>
+      <th>ID Card</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Address</th>
+      <th>Customer type</th>  <!--???-->
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+<!--    th:each="cusObj,loopStatus: ${customerList}" -> *ngFor="let item of Array, let i = index"-->
+    <tr *ngFor="let item of customerList | paginate: { itemsPerPage: 4, currentPage: p }, index as i" >
+      <td>{{i+1}}</td>
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.code}}</td>
+      <td>{{item.dayOfBirth | date:"M/d/yyyy"}}</td>
+      <td>{{item.idCard}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.phone}}</td>
+      <td>{{item.address}}</td>
+
+<!--      customerType.typeName ??? -->
+      <td >
+        {{item.customerType.name}}
+      </td>
+<!--      <td *ngFor="let type of cusTypeList">-->
+<!--        <p *ngIf="type.id==item.customerType.id">{{type.name}}</p>-->
+<!--      </td>-->
+
+      <td style="display: flex">
+        <a [routerLink]="['/customer/edit',item.id]" class="btn " role="button" style="color: white;background-color: dodgerblue">Edit</a>
+        <a [routerLink]="['/customer/list/delete',item.id]" style="color: white" class="btn bg-danger" role="button" data-toggle="modal" data-target="#modelId">Delete </a>
+        <!--          cha-> con -->
+        <a href="" class="btn" role="button" id="viewBtn"
+           style="color: white;background-color: dodgerblue; margin-left: 3px">View</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--    phan trang ??? -->
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<router-outlet></router-outlet>
