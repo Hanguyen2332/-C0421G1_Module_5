@@ -1,0 +1,70 @@
+<!--list-->
+<div style="text-align: center;margin: 20px 0 20px 0">
+  <h1 style="color: red;text-align: center">QUẢN LÝ XUẤT CHIếU PHIM</h1>
+</div>
+<!--nut create + search-->
+<nav class="navbar navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/create']" class="btn"
+       style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px">Create new</a>
+    <div class="d-flex">
+      <!--     findByName -->
+      <input name="name" [(ngModel)]="name" (ngModelChange)="searchByKeyword()"
+             class="form-control bg-white btn-warning my-2" type="search"
+             placeholder="Search by name" aria-label="Search">
+
+      <!--    bộ phận: select-option -> ngFor - "divisionList" -->
+      <select class="custom-select bg-white btn-warning" name="movieName" [(ngModel)]="movieName"
+              (ngModelChange)="searchByKeyword()" style="margin-top: 8px">
+        <option [value]="''">--Hiển thị tất cả--</option>
+        <option *ngFor="let item of movieList" [selected]="item.name===movieName"
+                [ngValue]="item.name">{{item.name}}</option>
+      </select>
+      <button class="btn btn-warning my-2" type="submit" style="margin-left:5px">Search</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row p-4">
+    <table class="table table-bordered table-striped ">
+      <thead>
+      <tr>
+        <th>No</th>
+        <th>ID</th>
+        <th (click)="sort('name')">Code&nbsp;&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('ngayChieu')">Ngày chiếu&nbsp;&nbsp;<i class="fa fa-sort"></i></th>
+        <th>Tên phim</th>
+        <th>Số vé</th>
+        <th >Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--    th:each="cusObj,loopStatus: ${customerList}" -> *ngFor="let item of Array, let i = index"-->
+      <tr
+        *ngFor="let item of xuatChieuList | orderBy:key:reverse | paginate: { itemsPerPage: 2, currentPage: p }, index as i">
+        <td>{{i + 1}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.code}}</td>
+        <td>{{item.ngayChieu | date:"M/d/yyyy"}}</td>
+        <td>{{item.movie.name}}</td>
+        <td>{{item.ticketNumber}}</td>
+
+        <td style="text-align: center">
+          <a [routerLink]="['/delete',item.id]" style="color: white" class="btn bg-danger" role="button"
+             data-toggle="modal" data-target="#modelId">Delete </a>
+          <!--          cha-> con -->
+          <a href="" class="btn" role="button" id="viewBtn"
+             style="color: white;background-color: dodgerblue; margin-left: 3px">View</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--phan trang-->
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>
+<!--delete modal-->
+<router-outlet></router-outlet>
+

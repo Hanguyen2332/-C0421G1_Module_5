@@ -1,0 +1,66 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "name": "Harry Potter"
+    },
+    {
+      "id": 2,
+      "name": "Bố già"
+    },
+    {
+      "id": 3,
+      "name": "Em chưa 18"
+    },
+    {
+      "id": 4,
+      "name": "Hai anh em hổ"
+    },
+    {
+      "id": 5,
+      "name": "Về nhà đi con"
+    }
+  ],
+  "xuatChieu": [
+    {
+      "id": 1,
+      "code": "CI-0001",
+      "ngayChieu": "2021-06-03",
+      "ticketNumber": 200,
+      "movie": {
+        "id": "3",
+        "name": "Em chưa 18"
+      }
+    },
+    {
+      "id": 2,
+      "code": "CI-0002",
+      "ngayChieu": "2021-07-03",
+      "ticketNumber": 300,
+      "movie": {
+        "id": "1",
+        "name": "Harry Potter"
+      }
+    },
+    {
+      "id": 3,
+      "code": "CI-0003",
+      "ngayChieu": "2021-09-11",
+      "ticketNumber": 250,
+      "movie": {
+        "id": "4",
+        "name": "Hai anh em hổ"
+      }
+    },
+    {
+      "id": 4,
+      "code": "CI-0004",
+      "ngayChieu": "2021-10-10T17:00:00.000Z",
+      "ticketNumber": "250",
+      "movie": {
+        "id": 3,
+        "name": "Em chưa 18"
+      }
+    }
+  ]
+}

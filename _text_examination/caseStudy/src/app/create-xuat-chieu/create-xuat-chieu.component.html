@@ -1,0 +1,80 @@
+<!--<mat-slider min="1" max="100" step="1" value="50"></mat-slider>-->
+<div class="container mt-3">
+  <a routerLink="">Back to List</a>
+
+  <form [formGroup]="createForm" (ngSubmit)="create()"> <!--    th:object="${cusDtoObj}"-->
+
+    <div class="form-group">
+      <table class="w-50 m-auto">
+        <tr>
+          <td></td>
+          <td>
+            <h3 style="text-align: center;color: blue">Tạo xuất chiếu mới</h3>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="code">Code:</label></td>
+          <td>
+            <input  class="form-control" id="code" formControlName="code"/>
+            <div class="message" *ngIf="createForm.get('code')?.errors?.required $$ createForm.get('code').dirty">
+              Không bỏ trống trường này
+            </div>
+            <div  class="message"  *ngIf="createForm.get('code')?.hasError('pattern') $$ createForm.get('code').dirty">Nhập code theo định dạng : 'CI-xxxx (x: 0-9)'</div>
+            <div  class="message"  [hidden]="checkCode">Mã code đã tồn tại. Vui lòng nhập mã khác!</div>
+
+          </td>
+        </tr>
+
+<!--        datePicker-->
+        <tr>
+          <td><label for="ngayChieu">Ngày chiếu:</label></td>
+          <td>
+            <mat-form-field>
+              <input matInput [matDatepicker]="myDatepicker" [min]="minDate" placeholder="Chọn ngày" class="form-control" id="ngayChieu" formControlName="ngayChieu">
+              <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #myDatepicker></mat-datepicker>
+            </mat-form-field>
+            <div class="message" *ngIf="createForm.get('ngayChieu')?.errors?.required $$ createForm.get('ngayChieu').dirty">
+              Không bỏ trống trường này
+            </div>
+            <div  class="message"  *ngIf="createForm.controls?.ngayChieu?.hasError('invalidDay') $$ createForm.get('ngayChieu').dirty">Ngày chiếu phải >= ngày hiện tại</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="ticketNumber">Số vé:</label></td>
+          <td>
+            <input  class="form-control" id="ticketNumber" formControlName="ticketNumber"/>
+            <div class="message" *ngIf="createForm.get('ticketNumber')?.errors?.required $$ createForm.get('ticketNumber').dirty">
+              Không bỏ trống trường này
+            </div>
+
+<!--            <div  class="message"  *ngIf="createForm.get('ticketNumber')?.hasError('notANumber') $$ createForm.get('ticketNumber').dirty">Vui lòng Nhập số</div>-->
+
+            <div  class="message"  *ngIf="createForm.get('ticketNumber')?.hasError('pattern') $$ createForm.get('ticketNumber').dirty">Vui lòng Nhập số nguyên dương</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="movie"></label>Tên phim:</td>
+          <td>
+            <select formControlName="movie" id="movie" class="form-control">
+              <option [selected]="true" [value]="null" disabled>--Chọn tên phim--</option>
+              <option *ngFor="let item of movieList" [ngValue]="item">{{item.name}}</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <button type="submit" class="btn btn-primary mt-3" [disabled]="createForm.invalid">Create</button>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </form>
+
+</div>
