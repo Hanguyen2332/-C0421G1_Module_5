@@ -14,16 +14,18 @@ import {checkAge} from "../../validation/checkAge";
 })
 export class CreateCustomerComponent implements OnInit {
   cusTypeList: ICustomerType[] = [];
+  customerList: ICustomer[] = [];
+
   createForm: FormGroup = new FormGroup({
     id: new FormControl(''),
-    code: new FormControl('',[Validators.required,Validators.pattern("^KH-\\d{4}$")]),
-    name: new FormControl('',[Validators.required]),
-    dayOfBirth: new FormControl('',[Validators.required,checkAge]),
+    code: new FormControl('', [Validators.required, Validators.pattern("^KH-\\d{4}$")]),
+    name: new FormControl('', [Validators.required]),
+    dayOfBirth: new FormControl('', [Validators.required, checkAge]),
     gender: new FormControl('0', Validators.required),
     idCard: new FormControl('', [Validators.required, Validators.pattern("\\d{9,11}")]),
-    phone: new FormControl('',[Validators.required,Validators.pattern("^((090)|(091)|(\\(84\\)\\+90)|(\\(84\\)\\+91))\\d{7}$")]),
-    email: new FormControl('',[Validators.required,Validators.pattern("^[a-zA-Z0-9_]+@[a-zA-Z]+(\\.[a-zA-Z]+){1,3}$")]),
-    address: new FormControl('',Validators.required),
+    phone: new FormControl('', [Validators.required, Validators.pattern("^((090)|(091)|(\\(84\\)\\+90)|(\\(84\\)\\+91))\\d{7}$")]),
+    email: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9_]+@[a-zA-Z]+(\\.[a-zA-Z]+){1,3}$")]),
+    address: new FormControl('', Validators.required),
 
     customerType: new FormControl('')
   })
@@ -31,40 +33,42 @@ export class CreateCustomerComponent implements OnInit {
   constructor(private customerService: CustomerService,
               private cusTypeService: CusTypeService,
               private router: Router) {
-    // this.getCreateForm();
+    this.getAllList();
     this.getCusTypeList();
   }
 
   ngOnInit(): void {
   }
 
-  // getCreateForm() {
-  //   this.createForm = new FormGroup({
-  //     id:new FormControl(''),
-  //     code: new FormControl(''),
-  //     name: new FormControl(''),
-  //     dayOfBirth: new FormControl(''),
-  //     gender: new FormControl(''),
-  //     idCard: new FormControl(''),
-  //     phone: new FormControl(''),
-  //     email: new FormControl(''),
-  //     address: new FormControl(''),
-  //
-  //     customerType: new FormControl(''),
-  //   })
-  // }
-
   getCusTypeList() {
     this.cusTypeService.getAll().subscribe(data => {
       this.cusTypeList = data;
-    }, error => {
-      alert('Please try again')
     })
   }
 
+  getAllList() {
+    this.customerService.getAll().subscribe(data => {
+      this.customerList = data;
+    })
+  }
+
+  checkCode: boolean = true
   create() {
+    //check code:
     const customer = this.createForm.value;
-    if(this.createForm.valid) {
+    let inputCode = customer.code;
+    let count = 0;
+    for (let item of this.customerList) {
+      if (item.code === inputCode) {
+        this.checkCode = false;
+      }else {
+        count++;
+      }
+    }
+    //nếu ok --> chuyển check = true (ẩn báo lỗi) --> gọi hàm create:
+    if (count === this.customerList.length)  {
+      this.checkCode = true
+      if (this.createForm.valid)
       this.customerService.createNew(customer).subscribe(() => {
         alert('Tạo thành công');
         this.createForm.reset();

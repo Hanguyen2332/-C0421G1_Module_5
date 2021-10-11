@@ -36,36 +36,21 @@ export class UpdateCustomerComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private cusTypeService: CusTypeService,
               private router: Router) {
-    this.getCusTypeList();
     //get id (tren url)
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = Number(paramMap.get('id'));
+      //select-option - NOTE: Gọi hàm tại đây --> không bị lỗi bất đồng bộ --> k load đc data (do chưa có id để so sánh)
+      this.getCusTypeList();
       this.customerService.findById(this.id).subscribe(data => {  //Lấy đối tượng cần edit
         this.customerObj = data;
         this.editForm.setValue(this.customerObj);
-        // this.getEditForm();  //setForm
       });
     })
   }
 
   ngOnInit(): void {
-    // this.editForm.setValue(this.customerObj)
   }
 
-  // getEditForm() {
-  //   this.editForm = new FormGroup({
-  //     name: new FormControl(this.customerObj.name,[Validators.required]),
-  //     code: new FormControl(this.customerObj.code,[Validators.required,Validators.pattern("^KH-\\d{4}$")]),
-  //     dayOfBirth: new FormControl(this.customerObj.dayOfBirth,[Validators.required,checkAge]),
-  //     gender: new FormControl(this.customerObj.gender, Validators.required),
-  //     idCard: new FormControl(this.customerObj.idCard, [Validators.required, Validators.pattern("\\d{9,11}")]),
-  //     phone: new FormControl(this.customerObj.phone,[Validators.required,Validators.pattern("^((090)|(091)|(\\(84\\)\\+90)|(\\(84\\)\\+91))\\d{7}$")]),
-  //     email: new FormControl(this.customerObj.email,[Validators.required,Validators.pattern("^[a-zA-Z0-9_]+@[a-zA-Z]+(\\.[a-zA-Z]+){1,3}$")]),
-  //     address: new FormControl(this.customerObj.address,Validators.required),
-  //
-  //     customerType: new FormControl(this.customerObj.customerType.id)
-  //   })
-  // }
 
   getCusTypeList() {
     this.cusTypeService.getAll().subscribe(data => {

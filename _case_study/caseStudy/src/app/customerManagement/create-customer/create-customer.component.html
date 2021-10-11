@@ -12,7 +12,7 @@
         <tr>
           <td></td>
           <td>
-            <h3 style="text-align: center;color: blue">Edit Customer</h3>
+            <h3 style="text-align: center;color: blue">Create Customer</h3>
           </td>
         </tr>
         <tr>
@@ -26,31 +26,33 @@
         <tr>
           <td><label for="code">Code:</label></td>
           <td>
-            <input  class="form-control" id="code" formControlName="code"/>
-            <div class="message" *ngIf="createForm.get('code')?.errors?.required $$ createForm.get('code').touched">
+            <input  class="form-control" id="code" formControlName="code"/> <!--(change)="check(code.value)" #code-->
+            <div class="message" *ngIf="createForm.get('code')?.errors?.required $$ createForm.get('code').dirty">
               Không bỏ trống trường này
             </div>
-            <div  class="message"  *ngIf="createForm.get('code')?.hasError('pattern') $$ createForm.get('code').touched">Nhập code theo định dạng : 'KH-xxxx (x: 0-9)'</div>
+            <div  class="message"  *ngIf="createForm.get('code')?.hasError('pattern') $$ createForm.get('code').dirty">Nhập code theo định dạng : 'KH-xxxx (x: 0-9)'</div>
+            <div  class="message" [hidden]="checkCode">Mã code đã tồn tại. Vui lòng nhập mã khác.</div>
+
           </td>
         </tr>
         <tr>
           <td><label for="dayOfBirth">Date of birth:</label></td>
           <td>
             <input type="date"  class="form-control" id="dayOfBirth" formControlName="dayOfBirth"/>
-            <div id="dayMess" class="message" *ngIf="createForm.get('dayOfBirth')?.errors?.required $$ createForm.get('dayOfBirth').touched">
+            <div id="dayMess" class="message" *ngIf="createForm.get('dayOfBirth')?.errors?.required $$ createForm.get('dayOfBirth').dirty">
               Không bỏ trống trường này
             </div>
-            <div  class="message"  *ngIf="createForm.controls?.dayOfBirth?.hasError('ageInvalid') $$ createForm.get('dayOfBirth').touched">Tuổi phải >=18</div>
+            <div  class="message"  *ngIf="createForm.controls?.dayOfBirth?.hasError('ageInvalid') $$ createForm.get('dayOfBirth').dirty">Tuổi phải >=18</div>
           </td>
         </tr>
         <tr>
           <td><label for="email">Email:</label></td>
           <td>
             <input  class="form-control" id="email" formControlName="email"/>
-            <div class="message" *ngIf="createForm.get('email')?.errors?.required $$ createForm.get('email').touched">
+            <div class="message" *ngIf="createForm.get('email')?.errors?.required $$ createForm.get('email').dirty">
               Không bỏ trống trường này
             </div>
-            <div  class="message"  *ngIf="createForm.get('email')?.hasError('pattern') $$ createForm.get('email').touched">Nhập code theo định dạng : 'email@abc.com'</div>
+            <div  class="message"  *ngIf="createForm.get('email')?.hasError('pattern') $$ createForm.get('email').dirty">Nhập code theo định dạng : 'email@abc.com'</div>
           </td>
         </tr>
 
@@ -58,7 +60,7 @@
           <td><label for="address">Address:</label></td>
           <td>
             <input  class="form-control" id="address" formControlName="address"/>
-            <div class="message" *ngIf="createForm.get('email')?.errors?.required $$ createForm.get('email').touched">
+            <div class="message" *ngIf="createForm.get('email')?.errors?.required $$ createForm.get('email').dirty">
               Không bỏ trống trường này
             </div>
           </td>
@@ -98,10 +100,10 @@
           <td><label for="idCard"></label>ID Card:</td>
           <td>
             <input  class="form-control" id="idCard" formControlName="idCard"/>
-            <div class="message" *ngIf="createForm.get('idCard')?.errors?.required $$ createForm.get('idCard').touched">
+            <div class="message" *ngIf="createForm.get('idCard')?.errors?.required $$ createForm.get('idCard').dirty">
               Không bỏ trống trường này
             </div>
-            <div  class="message"  *ngIf="createForm.get('idCard')?.hasError('pattern') $$ createForm.get('idCard').touched">Vui lòng nhập theo định dạng: 'XXXXXXXXX' or 'XXXXXXXXX'  (X: 0-9)</div>
+            <div  class="message"  *ngIf="createForm.get('idCard')?.hasError('pattern') $$ createForm.get('idCard').dirty">Vui lòng nhập theo định dạng: 'XXXXXXXXX' or 'XXXXXXXXX'  (X: 0-9)</div>
           </td>
         </tr>
 
@@ -109,10 +111,12 @@
           <td><label for="phone"></label>Phone:</td>
           <td>
             <input class="form-control" id="phone" formControlName="phone"/>
-            <div class="message" *ngIf="createForm.get('phone')?.errors?.required $$ createForm.get('phone').touched">
+            <div class="message" *ngIf="createForm.get('phone')?.errors?.required $$ createForm.get('phone').dirty">
               Không bỏ trống trường này
             </div>
-            <div  class="message"  *ngIf="createForm.get('phone')?.hasError('pattern') $$ createForm.get('phone').touched">Nhập theo định dạng: '090xxxxxxx' or '091xxxxxxx' or (84)+90xxxxxxx or (84)+91xxxxxxx  (x: 0-9)</div>
+            <div  class="message"  *ngIf="createForm.get('phone')?.hasError('pattern') $$ createForm.get('phone').dirty">
+              Nhập theo định dạng: '090xxxxxxx' or '091xxxxxxx' or (84)+90xxxxxxx or (84)+91xxxxxxx  (x: 0-9)
+            </div>
           </td>
         </tr>
 

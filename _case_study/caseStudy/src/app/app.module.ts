@@ -7,10 +7,6 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { HeaderInfoComponent } from './layout/header-info/header-info.component';
 import { FixedBottomComponent } from './layout/fixed-bottom/fixed-bottom.component';
-import { CreateCustomerComponent } from './customerManagement/create-customer/create-customer.component';
-import { ListCustomerComponent } from './customerManagement/list-customer/list-customer.component';
-import { DeleteCustomerComponent } from './customerManagement/delete-customer/delete-customer.component';
-import { UpdateCustomerComponent } from './customerManagement/update-customer/update-customer.component';
 import { CreateEmployeeComponent } from './employeeManagement/create-employee/create-employee.component';
 import { UpdateEmployeeComponent } from './employeeManagement/update-employee/update-employee.component';
 import { ListEmployeeComponent } from './employeeManagement/list-employee/list-employee.component';
@@ -27,7 +23,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "./shared/shared.module";
 import {CustomerModule} from "./customerManagement/customer.module";
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {Ng2OrderModule} from "ng2-order-pipe";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HomeComponent } from './home/home.component';
+// import { MatDatepickerModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +55,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
     CreateContractComponent,
     CreateContractDetailComponent,
-    ListNowCustomerComponent
+    ListNowCustomerComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,8 +64,17 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     SharedModule,
     CustomerModule,
+    FormsModule,
+    ReactiveFormsModule,
     //phan trang:
-    NgxPaginationModule
+    NgxPaginationModule,
+    //sorting
+    Ng2OrderModule,
+    //search
+    Ng2SearchPipeModule,
+    //datpicker
+    // MatDatepickerModule,
+
     // CustomerModule
   ],
   providers: [],

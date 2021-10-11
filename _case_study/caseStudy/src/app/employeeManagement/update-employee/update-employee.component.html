@@ -1,12 +1,8 @@
-<!--home: welcome-->
-<app-header></app-header>
-<app-navbar></app-navbar>
-
 <div class="container mt-3">
-  <a href="/employee">Back to Home Page</a>
+  <a routerLink="/employee/list">Back to List</a>
 
-  <!--  th:object="${empDtoObj}" ->  con -> cha -->
-  <form action="@{/employee/edit}" method="post">
+  <form [formGroup]="editForm" (ngSubmit)="edit()"> <!--    th:object="${cusDtoObj}"-->
+
     <div class="form-group">
       <table class="w-50 m-auto">
         <tr>
@@ -18,111 +14,112 @@
         <tr>
           <td><label for="name">Name:</label></td>
           <td>
-            <input class="form-control" id="name"/>
-            <!--            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="message"></div>-->
+            <input  class="form-control" id="name" formControlName="name"/>
+            <div class="message" *ngIf="editForm.get('name')?.errors?.required $$ editForm.controls.name?.dirty">Không bỏ trống trường này</div>
           </td>
         </tr>
 
         <tr>
           <td><label for="dayOfBirth">Date of birth:</label></td>
           <td>
-            <input type="date" class="form-control" id="dayOfBirth"/>
-            <!--            <div class="message" id="dateMess"></div>-->
-            <!--            <div th:if="${#fields.hasErrors('dayOfBirth')}" th:errors="*{dayOfBirth}" class="message"></div>-->
-          </td>
-        </tr>
-        <tr>
-          <td><label for="idCard">ID Card: </label></td>
-          <td>
-            <input class="form-control" id="idCard"/>
-            <!--            <div th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}" class="message"></div>-->
+            <input type="date"  class="form-control" id="dayOfBirth" formControlName="dayOfBirth"/>
+            <div id="dayMess" class="message" *ngIf="editForm.get('dayOfBirth')?.errors?.required $$ editForm.get('dayOfBirth').dirty">
+              Không bỏ trống trường này
+            </div>
+            <div  class="message"  *ngIf="editForm.controls?.dayOfBirth?.hasError('ageInvalid') $$ editForm.get('dayOfBirth').dirty">Tuổi phải >=18</div>
           </td>
         </tr>
         <tr>
           <td><label for="email">Email:</label></td>
           <td>
-            <input id="email" class="form-control"/>
-            <!--            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="message"></div>-->
-          </td>
-        </tr>
-        <tr>
-          <td><label for="phone">Phone: </label></td>
-          <td>
-            <input id="phone" class="form-control"/>
-            <!--            <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="message"></div>-->
-          </td>
-        </tr>
-        <tr>
-          <td><label for="salary">Salary:</label></td>
-          <td>
-            <input id="salary" class="form-control" oninput="checkSalary()" id="salary"/>
-            <!--            <div id="salaryMess" class="message"></div>-->
-            <!--                        <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" class="message"></div>-->
+            <input  class="form-control" id="email" formControlName="email"/>
+            <div class="message" *ngIf="editForm.get('email')?.errors?.required $$ editForm.get('email').dirty">
+              Không bỏ trống trường này
+            </div>
+            <div  class="message"  *ngIf="editForm.get('email')?.hasError('pattern') $$ editForm.get('email').dirty">Nhập code theo định dạng : 'email@abc.com'</div>
           </td>
         </tr>
 
         <tr>
           <td><label for="address">Address:</label></td>
           <td>
-            <input id="address" class="form-control"/>
-            <!--            <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="message"></div>-->
+            <input  class="form-control" id="address" formControlName="address"/>
+            <div class="message" *ngIf="editForm.get('email')?.errors?.required $$ editForm.get('email').dirty">
+              Không bỏ trống trường này
+            </div>
           </td>
         </tr>
 
-
         <tr>
-          <td><label for="division">Division:</label></td>
+          <td><label for="division"></label>Division:</td>
           <td>
-            <select id="division" class="custom-select">
-              <option>Sale – Marketing</option>
-              <option>Hành Chính</option>
-              <option>Phục vụ</option>
-              <option>Quản lý</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="position">Position:</label></td>
-          <td>
-            <select class="custom-select" id="position">
-              <option>Phục vụ</option>
-              <option>Lễ tân</option>
-              <option>Quản lý</option>
-              <option>Giám đốc</option>
-              <option>Chuyên viên</option>
-              <option>Giám sát</option>
+            <select formControlName="division" id="division" class="form-control">
+              <option [value]="null" disabled>--Choose Division--</option>
+              <option *ngFor="let item of divisionList" [ngValue]="item" [selected]="editForm.controls.division.value.id==item.id">{{item.name}}</option>
             </select>
           </td>
         </tr>
 
         <tr>
-          <td><label for="eduDegree">Edu Degree:</label></td>
+          <td><label for="position"></label>Position:</td>
           <td>
-            <select class="custom-select" id="eduDegree">
-              <option>Trung cấp</option>
-              <option>Cao đẳng</option>
-              <option>Đại học</option>
-              <option>Sau đại học</option>
+            <select formControlName="position" id="position" class="form-control">
+              <option [value]="null" disabled>--Choose Position--</option>
+              <option *ngFor="let item of positionList" [ngValue]="item" [selected]="editForm.controls.position.value.id==item.id">{{item.name}}</option>
             </select>
           </td>
         </tr>
 
         <tr>
-          <td><label for="username">Username:</label></td>
+          <td><label for="eduDegree"></label>eduDegree:</td>
           <td>
-            <input class="form-control" id="username"/>
-            <!--            <div th:if="${#fields.hasErrors('user')}" th:errors="*{user}" class="message"></div>-->
+            <select formControlName="eduDegree" id="eduDegree" class="form-control">
+              <option [value]="null" disabled>--Choose eduDegree--</option>
+              <option *ngFor="let item of eduDegreeList" [ngValue]="item" [selected]="editForm.controls.eduDegree.value.id==item.id">{{item.name}}</option>
+            </select>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td><label for="idCard"></label>ID Card:</td>
+          <td>
+            <input  class="form-control" id="idCard" formControlName="idCard"/>
+            <div class="message" *ngIf="editForm.get('idCard')?.errors?.required $$ editForm.get('idCard').dirty">
+              Không bỏ trống trường này
+            </div>
+            <div  class="message"  *ngIf="editForm.get('idCard')?.hasError('pattern') $$ editForm.get('idCard').dirty">Vui lòng nhập theo định dạng: 'XXXXXXXXX' or 'XXXXXXXXX'  (X: 0-9)</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="phone"></label>Phone:</td>
+          <td>
+            <input class="form-control" id="phone" formControlName="phone"/>
+            <div class="message" *ngIf="editForm.get('phone')?.errors?.required $$ editForm.get('phone').dirty">
+              Không bỏ trống trường này
+            </div>
+            <div  class="message"  *ngIf="editForm.get('phone')?.hasError('pattern') $$ editForm.get('phone').dirty">Nhập theo định dạng: '090xxxxxxx' or '091xxxxxxx' or (84)+90xxxxxxx or (84)+91xxxxxxx  (x: 0-9)</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="salary"></label>Salary:</td>
+          <td>
+            <input class="form-control" id="salary" formControlName="salary"/>
+            <div class="message" *ngIf="editForm.get('salary')?.errors?.required $$ editForm.get('salary').dirty">
+              Không bỏ trống trường này
+            </div>
           </td>
         </tr>
 
         <tr>
           <td></td>
-          <td style="text-align: center">
-            <button type="submit" class="btn btn-primary mt-3">Edit</button>
+          <td>
+            <button type="submit" class="btn btn-primary mt-3" [disabled]="editForm.invalid">Create</button>
           </td>
         </tr>
       </table>
     </div>
   </form>
 </div>
-

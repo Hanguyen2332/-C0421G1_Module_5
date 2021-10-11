@@ -1,38 +1,24 @@
-<!--&lt;!&ndash;home: welcome&ndash;&gt;-->
-<!--<app-header></app-header>-->
-<!--<app-navbar></app-navbar>-->
-
 <!--list-->
 <div style="text-align: center;margin: 20px 0 20px 0">
   <h2 style="color: dodgerblue;text-align: center">CUSTOMER MANAGEMENT</h2>
 </div>
 
-<!--th:if="${customerList.isEmpty()}"-->
-<!--<div style="color: red;margin: 20px; padding-left: 30px">-->
-<!--  <h4>List Customer is empty! Click button to create new!</h4>-->
-<!--</div>-->
-<!--message-->
 <p style="color: red; padding-left: 30px"></p>
 
 <!--nut create + search-->
-<!--<form class="form-inline my-lg-2" action="/customer">-->
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="['/customer/create']" class="btn"
        style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px">Create new</a>
-<!--    <a class="navbar-brand">Navbar</a>-->
     <div class="d-flex">
-          <input name="name" class="form-control bg-white btn-warning my-2" type="search"
+<!--     findByName -->
+          <input name="name" [(ngModel)]="name" (ngModelChange)="searchByKeyword()"  class="form-control bg-white btn-warning my-2" type="search"
                  placeholder="Search by name" aria-label="Search">
 
         <!--    loại khách hàng: select-option -> ngFor - "cusTypeList" -->
-          <select class="custom-select bg-white btn-warning" name="cusTypeId" style="margin-top: 8px">
-            <option value="">--Chọn loại khách hàng--</option>
-            <option >Diamond</option>
-            <option >Platinum</option>
-            <option >Gold</option>
-            <option >Silver</option>
-            <option >Member</option>
+          <select class="custom-select bg-white btn-warning" name="cusTypeId" [(ngModel)]="cusTypeName" (ngModelChange)="searchByKeyword()" style="margin-top: 8px">
+            <option [value]="''" >--Hiển thị tất cả--</option>
+            <option *ngFor="let item of cusTypeList" [selected]="item.name===cusTypeName" [ngValue]="item.name" >{{item.name}}</option>
           </select>
           <button class="btn btn-warning my-2" type="submit" style="margin-left:5px">Search</button>
     </div>
@@ -47,7 +33,7 @@
     <tr>
       <th>No</th>
       <th>ID</th>
-      <th>Full name</th>
+      <th (click)="sort('name')">Full name&nbsp;<i class="fa fa-sort"></i></th>
       <th>Code</th>
       <th>Day of birth</th>
       <th>ID Card</th>
@@ -60,7 +46,7 @@
     </thead>
     <tbody>
 <!--    th:each="cusObj,loopStatus: ${customerList}" -> *ngFor="let item of Array, let i = index"-->
-    <tr *ngFor="let item of customerList | paginate: { itemsPerPage: 4, currentPage: p }, index as i" >
+    <tr *ngFor="let item of customerList | orderBy:key:reverse | paginate: { itemsPerPage: 4, currentPage: p }, index as i" >
       <td>{{i+1}}</td>
       <td>{{item.id}}</td>
       <td>{{item.name}}</td>

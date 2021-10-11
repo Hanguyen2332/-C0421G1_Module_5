@@ -21,6 +21,7 @@ export class DeleteCustomerComponent implements OnInit {
       this.id = paramMap.get("id");
       this.customerService.findById(this.id).subscribe(object => {
         this.customerObj = object;
+        console.log(this.customerObj)
       })
     })
   }
@@ -36,7 +37,8 @@ export class DeleteCustomerComponent implements OnInit {
   delete() {
     this.customerService.delete(this.id).subscribe(()=> {
       alert('Xóa thành công');
-      this.router.navigateByUrl('/customer/list')
+      this.router.navigateByUrl('/customer/list');
+      window.location.reload(); // cập nhật lại trang list
     },error => console.log('Xóa không thành công, lỗi: ' + error))
   }
 }

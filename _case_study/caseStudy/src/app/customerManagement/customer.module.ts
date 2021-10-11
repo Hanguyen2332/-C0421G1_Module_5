@@ -5,8 +5,9 @@ import {ListCustomerComponent} from "./list-customer/list-customer.component";
 import {DeleteCustomerComponent} from "./delete-customer/delete-customer.component";
 import {UpdateCustomerComponent} from "./update-customer/update-customer.component";
 import { CustomerRoutingModule } from './customer-routing.module';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxPaginationModule} from "ngx-pagination";
+import {Ng2OrderModule} from "ng2-order-pipe";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import {NgxPaginationModule} from "ngx-pagination";
     CommonModule,
     CustomerRoutingModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    Ng2OrderModule
   ]
 })
 export class CustomerModule { }
