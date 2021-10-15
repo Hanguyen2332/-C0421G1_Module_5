@@ -1,0 +1,68 @@
+<!--list-->
+<div style="text-align: center;margin: 20px 0 20px 0">
+  <h2 style="color: dodgerblue;text-align: center">BUS STATION MANAGEMENT</h2>
+</div>
+<!--nut create + search-->
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand btn" href=""
+       style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px">Create new</a>
+  </div>
+</nav>
+<div class="row p-4" style="padding-left: 1px" >
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+
+        <th>ID</th>
+        <th (click)="sort('name')">Name&nbsp;<i class="fa fa-sort"></i></th>
+        <th>Bus type</th>
+        <th>Phone Number</th>
+
+        <th>Email</th>
+        <th>Star time</th>
+        <th>End time</th>
+        <th>Starting Point</th>
+        <th>Destination</th>
+
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--    th:each="cusObj,loopStatus: ${customerList}" -> *ngFor="let item of Array, let i = index"-->
+      <tr *ngFor="let item of busList | orderBy:key:reverse | paginate: { itemsPerPage: 2, currentPage: p }, index as i" >
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td *ngIf="item.busType == 0">giường nằm</td>
+        <td *ngIf="item.busType == 1">ghế ngồi</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.startime}}</td>
+        <td>{{item.endTime}}</td>
+        <!--      customerType.typeName ??? -->
+        <td >
+          {{item.startingPoint.name}}
+        </td>
+        <td >
+          {{item.destination.name}}
+        </td>
+
+
+        <td style="display: flex">
+          <a [routerLink]="['/edit',item.id]" class="btn " role="button" style="color: white;background-color: dodgerblue">Edit</a>
+          <a [routerLink]="['/delete',item.id]" style="color: white" class="btn bg-danger" role="button" data-toggle="modal" data-target="#modelId">Delete </a>
+
+        </td>
+      </tr>
+
+        <td><ng-template #emptyList style="color: red">List is empty</ng-template></td>
+
+      </tbody>
+    </table>
+  </div>
+<!--phan trang-->
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<!--delete modal-->
+<router-outlet></router-outlet>
+

@@ -1,0 +1,88 @@
+<!--list-->
+<div style="text-align: center;margin: 20px 0 20px 0">
+  <h2 style="color: dodgerblue;text-align: center">EMPLOYEE MANAGEMENT</h2>
+</div>
+<!--nut create + search-->
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/employee/create']" class="btn"
+       style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px">Create new</a>
+    <div class="d-flex">
+      <!--     findByName -->
+      <input name="name" [(ngModel)]="name" (ngModelChange)="searchByKeyword()"  class="form-control bg-white btn-warning my-2" type="search"
+             placeholder="Search by name" aria-label="Search">
+
+      <!--    bộ phận: select-option -> ngFor - "divisionList" -->
+      <select class="custom-select bg-white btn-warning" name="divisionName" [(ngModel)]="divisionName" (ngModelChange)="searchByKeyword()" style="margin-top: 8px">
+        <option [value]="''" >--Hiển thị tất cả--</option>
+        <option *ngFor="let item of divisionList" [selected]="item.name===divisionName" [ngValue]="item.name">{{item.name}}</option>
+      </select>
+      <button class="btn btn-warning my-2" type="submit" style="margin-left:5px">Search</button>
+    </div>
+  </div>
+</nav>
+<!--th:unless="${employeeList.isEmpty()}" -> *ngIf="employeeArray, else emptyEmployee"-->
+<div class="row" style="padding-left: 1px">
+  <div>
+    <table class="table table-bordered table-striped" style="max-width: 100%;overflow-x: scroll;display: inline-block">
+      <thead>
+      <tr>
+        <th>No</th>
+        <th>ID</th>
+        <th (click)="sort('name')">Full name&nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('dayOfBirth')">Day of birth<i class="fa fa-sort"></i></th>
+        <th>ID Card</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Salary</th>
+        <th>Address</th>
+        <th>Division</th>
+        <th>Position</th>
+        <th>Diploma</th>
+
+
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--    th:each="cusObj,loopStatus: ${customerList}" -> *ngFor="let item of Array, let i = index"-->
+      <tr *ngFor="let item of employeeList | orderBy:key:reverse | paginate: { itemsPerPage: 2, currentPage: p }, index as i" >
+        <td>{{i+1}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.dayOfBirth | date:"M/d/yyyy"}}</td>
+        <td>{{item.idCard}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.salary | currency: '$' : true: '1.0-2'}}</td>
+        <td>{{item.address}}</td>
+        <!--      customerType.typeName ??? -->
+        <td >
+          {{item.division.name}}
+        </td>
+        <td >
+          {{item.position.name}}
+        </td>
+        <td >
+          {{item.eduDegree.name}}
+        </td>
+
+        <td style="display: flex">
+          <a [routerLink]="['/employee/edit',item.id]" class="btn " role="button" style="color: white;background-color: dodgerblue">Edit</a>
+          <a [routerLink]="['/employee/list/delete',item.id]" style="color: white" class="btn bg-danger" role="button" data-toggle="modal" data-target="#modelId">Delete </a>
+          <!--          cha-> con -->
+          <a [routerLink]="['/employee/list/view',item.id]" style="color: white;background-color: dodgerblue; margin-left: 3px" class="btn" role="button" data-toggle="modal" data-target="#modelId">View </a>
+
+<!--          <a href="" class="btn" role="button"-->
+<!--             style="color: white;background-color: dodgerblue; margin-left: 3px" (click)="openViewDialog(item.id)" >View</a>-->
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--phan trang-->
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<!--delete modal-->
+<router-outlet></router-outlet>

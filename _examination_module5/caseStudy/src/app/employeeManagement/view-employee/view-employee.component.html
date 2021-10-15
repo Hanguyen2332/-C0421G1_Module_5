@@ -1,0 +1,80 @@
+<!--&lt;!&ndash;test dialog&ndash;&gt;-->
+<!--<div class="modal-header">-->
+<!--  <h5 class="modal-title" style="color: red">Xác nhận xóa khách hàng: </h5>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--  <div class="container-fluid">-->
+<!--    <table class="table">-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <td>ID: </td>-->
+<!--        <td>{{detailObj?.id}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Name: </td>-->
+<!--        <td>{{detailObj?.name}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>ID Card: </td>-->
+<!--        <td>{{detailObj?.idCard}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Phone: </td>-->
+<!--        <td>{{detailObj?.phone}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Address: </td>-->
+<!--        <td>{{detailObj?.address}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Email: </td>-->
+<!--        <td>{{detailObj?.email}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Day of birth: </td>-->
+<!--        <td>{{detailObj?.dayOfBirth}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>EduDegree: </td>-->
+<!--        <td>{{detailObj?.eduDegree}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Division: </td>-->
+<!--        <td>{{detailObj?.division}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Position: </td>-->
+<!--        <td>{{detailObj?.position}}</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <td>Salary: </td>-->
+<!--        <td>{{detailObj?.salary}}</td>-->
+<!--      </tr>-->
+<!--&lt;!&ndash;      <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td><button type="button" class="btn btn-warning" (click)="ok()" [mat-dialog-close]="true">OK</button></td>&ndash;&gt;-->
+<!--&lt;!&ndash;      </tr>&ndash;&gt;-->
+<!--      </tbody>-->
+<!--    </table>-->
+
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--  <button type="button" class="btn btn-warning" (click)="ok()">OK</button>-->
+<!--</div>-->
+
+
+<!--test dialog-->
+<div class="modal-header">
+  <h5 class="modal-title" style="color: red">Xác nhận xóa khách hàng: </h5>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <p>ID: {{detailObj?.id}}</p>
+    <p>Name: {{detailObj?.name}}</p>
+  </div>
+</div>
+<div class="modal-footer">
+<!--  <button type="button" class="btn btn-secondary" (click)="cancelDelete()" >Hủy</button>-->
+  <button type="button" class="btn btn-warning" (click)="ok()" cdkFocusInitial>OK</button>
+</div>
