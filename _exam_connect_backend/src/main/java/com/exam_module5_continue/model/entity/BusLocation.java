@@ -8,7 +8,6 @@ import java.util.List;
 
 
 @Entity
-@CrossOrigin(origins = "*")
 public class BusLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

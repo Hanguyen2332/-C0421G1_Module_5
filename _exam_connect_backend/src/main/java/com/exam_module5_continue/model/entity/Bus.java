@@ -1,10 +1,9 @@
 package com.exam_module5_continue.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
-@CrossOrigin(origins = "*")
+
 @Entity
 public class Bus {
     @Id

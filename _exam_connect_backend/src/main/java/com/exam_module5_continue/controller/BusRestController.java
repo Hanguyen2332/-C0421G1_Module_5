@@ -5,16 +5,20 @@ import com.exam_module5_continue.model.entity.BusLocation;
 import com.exam_module5_continue.model.service.IBusLocationService;
 import com.exam_module5_continue.model.service.IBusService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@CrossOrigin(origins = "*")
 public class BusRestController {
 
     @Autowired
@@ -35,10 +39,10 @@ public class BusRestController {
     }
 
 
-        //getListBus:
+    //getListBus:
     @GetMapping("/list")
-    public ResponseEntity<List<Bus>> getList() {
-        List<Bus> busList = iBusService.findAll();
+    public ResponseEntity<Page<Bus>> getBusList(@PageableDefault(value = 3) Pageable pageable) {
+        Page<Bus> busList = iBusService.findAll(pageable);
         if (busList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -46,9 +50,31 @@ public class BusRestController {
         return new ResponseEntity<>(busList, HttpStatus.OK);
     }
 
-    //create
-    @PostMapping
-    public ResponseEntity<Bus> createBus(@RequestBody Bus bus) {  //@RequestBody --> function?
+//    //
+    @GetMapping("/find-by-keyword")
+    public ResponseEntity<Page<Bus>> showListBus(@RequestParam(name = "name", required = false) String name,
+                                              @RequestParam(name = "locationId", required = false) Integer locationId,
+                                              @PageableDefault(value = 3) Pageable pageable) {
+        Page<Bus> busList = iBusService.findByKeyword(name, locationId, pageable);
+        if (busList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(busList, HttpStatus.OK);
+    }
+
+    //findById
+    @GetMapping("/{id}")
+    public ResponseEntity<Bus> getBusById(@PathVariable Integer id) {
+        Optional<Bus> busOptional = iBusService.findById(id);
+        if (!busOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(busOptional.get(), HttpStatus.OK);
+    }
+
+    //    //create
+    @PostMapping()
+    public ResponseEntity<Bus> createBus(@RequestBody Bus bus) {
         return new ResponseEntity<>(iBusService.save(bus), HttpStatus.OK);
     }
 
@@ -62,9 +88,6 @@ public class BusRestController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         Bus currentBus = busOptional.get();
-//        currentCustomer.setFirstName(customer.getFirstName());
-//        currentCustomer.setLastName(customer.getLastName());
-
         iBusService.save(currentBus);
 
         return new ResponseEntity<>(currentBus, HttpStatus.OK);
@@ -78,7 +101,6 @@ public class BusRestController {
         if (!busOptional.isPresent()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-
         iBusService.delete(id);
         return new ResponseEntity<>(busOptional.get(), HttpStatus.NO_CONTENT);
     }

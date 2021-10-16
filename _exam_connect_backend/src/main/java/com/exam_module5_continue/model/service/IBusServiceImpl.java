@@ -3,6 +3,8 @@ package com.exam_module5_continue.model.service;
 import com.exam_module5_continue.model.entity.Bus;
 import com.exam_module5_continue.model.repository.BusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,8 @@ public class IBusServiceImpl implements IBusService {
     @Autowired
     private BusRepository busRepository;
     @Override
-    public List<Bus> findAll() {
-        return this.busRepository.findAll();
+    public Page<Bus> findAll(Pageable pageable) {
+        return this.busRepository.findAll(pageable);
     }
 
     @Override
@@ -30,5 +32,10 @@ public class IBusServiceImpl implements IBusService {
     @Override
     public Bus save(Bus object) {
         return this.busRepository.save(object);
+    }
+
+    @Override
+    public Page<Bus> findByKeyword(String name, Integer locationId, Pageable pageable) {
+        return this.busRepository.searchByKeyword(name,locationId,pageable);
     }
 }
