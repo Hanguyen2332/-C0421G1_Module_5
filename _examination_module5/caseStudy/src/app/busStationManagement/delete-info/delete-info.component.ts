@@ -3,7 +3,6 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {BusInfo} from "../../model/bus-info";
 import {BusService} from "../../service/bus.service";
-import {EmployeeService} from "../../service/employee.service";
 
 @Component({
   selector: 'app-delete-info',
@@ -14,8 +13,7 @@ export class DeleteInfoComponent implements OnInit {
  busObj :BusInfo = {};
  id: number = 0;
 
-  constructor(private employeeService: EmployeeService,
-              private activatedRoute: ActivatedRoute,
+  constructor(private activatedRoute: ActivatedRoute,
               private busService: BusService,
               private router: Router) {
     this.activatedRoute.paramMap.subscribe((paramMap:ParamMap)=>{

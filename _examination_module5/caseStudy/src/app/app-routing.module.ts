@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {ListBusComponent} from "./busStationManagement/list-bus/list-bus.component";
 import {UpdateInfoComponent} from "./busStationManagement/update-info/update-info.component";
 import {DeleteInfoComponent} from "./busStationManagement/delete-info/delete-info.component";
+import {CreateBusComponent} from "./busStationManagement/create-bus/create-bus.component";
 
 const routes : Routes = [
   //home
@@ -12,6 +13,8 @@ const routes : Routes = [
     {path:'delete/:id',component: DeleteInfoComponent }
   ]},
   {path:'edit/:id',component: UpdateInfoComponent},
+  {path:'create',component: CreateBusComponent},
+
 ];
 
 @NgModule({

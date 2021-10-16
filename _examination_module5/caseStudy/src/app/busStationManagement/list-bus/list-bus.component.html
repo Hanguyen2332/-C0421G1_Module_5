@@ -2,13 +2,28 @@
 <div style="text-align: center;margin: 20px 0 20px 0">
   <h2 style="color: dodgerblue;text-align: center">BUS STATION MANAGEMENT</h2>
 </div>
+
 <!--nut create + search-->
 <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand btn" href=""
-       style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px">Create new</a>
+      <a class="navbar-brand btn" routerLink="/create"
+         style="color: white;background-color: dodgerblue; margin: 8px 8px; padding: 6px 12px">Create new</a>
+    <div class="d-flex">
+      <!--     findByName -->
+      <input name="name" [(ngModel)]="name" (ngModelChange)="searchByKeyword(request)"  class="form-control bg-white btn-warning my-2" type="search"
+             placeholder="Search by name" aria-label="Search">
+
+      <!--    loại khách hàng: select-option -> ngFor - "cusTypeList" -->
+      <select class="custom-select bg-white btn-warning" name="cusTypeId" [(ngModel)]="startingPointId" (ngModelChange)="searchByKeyword(request)" style="margin-top: 8px">
+        <option [value]="''" >--Hiển thị tất cả--</option>
+        <option *ngFor="let item of locationList" [selected]="item.id===startingPointId" [ngValue]="item.Id" >{{item.name}}</option>
+      </select>
+      <button class="btn btn-warning my-2" type="submit" style="margin-left:5px">Search</button>
+    </div>
   </div>
 </nav>
+
+<!--Body-->
 <div class="row p-4" style="padding-left: 1px" >
     <table class="table table-bordered table-striped">
       <thead>
@@ -30,7 +45,7 @@
       </thead>
       <tbody>
       <!--    th:each="cusObj,loopStatus: ${customerList}" -> *ngFor="let item of Array, let i = index"-->
-      <tr *ngFor="let item of busList | orderBy:key:reverse | paginate: { itemsPerPage: 2, currentPage: p }, index as i" >
+      <tr *ngFor="let item of busList | orderBy:key:reverse, index as i" >
         <td>{{item.id}}</td>
         <td>{{item.name}}</td>
         <td *ngIf="item.busType == 0">giường nằm</td>
@@ -61,7 +76,12 @@
     </table>
   </div>
 <!--phan trang-->
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<mat-paginator [length]="totalElement"
+               [pageSizeOptions]="[3,5,7]"
+               (page)="nextPage($event)"
+               aria-label="Select page">
+</mat-paginator>
+<!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->
 
 <!--delete modal-->
 <router-outlet></router-outlet>
