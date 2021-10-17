@@ -1,0 +1,98 @@
+{
+  "location": [
+    {
+      "id": 1,
+      "name": "Đà Nẵng"
+    },
+    {
+      "id": 2,
+      "name": "Huế"
+    },
+    {
+      "id": 3,
+      "name": "Buôn Mê Thuột"
+    },
+    {
+      "id": 4,
+      "name": "Hà Nội"
+    },
+    {
+      "id": 5,
+      "name": "Nghệ An"
+    },
+    {
+      "id": 5,
+      "name": "Bình Định"
+    }
+  ],
+  "bus": [
+    {
+      "id": 2,
+      "name": "Hoài Minh",
+      "busType": "1",
+      "phone": "0912058250",
+      "email": "phuongtrang@gmail.com",
+      "startime": "10:00",
+      "endTime": "19:00",
+      "startingPoint": {
+        "id": 3,
+        "name": "Buôn Mê Thuột"
+      },
+      "destination": {
+        "id": 4,
+        "name": "Hà Nội"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Tịnh Lộc",
+      "busType": "1",
+      "phone": "0912058250",
+      "email": "tinhloc@gmail.com",
+      "startime": "17:00",
+      "endTime": "05:00",
+      "startingPoint": {
+        "id": 3,
+        "name": "Buôn Mê Thuột"
+      },
+      "destination": {
+        "id": 1,
+        "name": "Đà Nẵng"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Mai Linh",
+      "busType": "0",
+      "phone": "0912058250",
+      "email": "mailinh@gmail.com",
+      "startime": "13:20",
+      "endTime": "15:00",
+      "startingPoint": {
+        "id": 2,
+        "name": "Huế"
+      },
+      "destination": {
+        "id": 1,
+        "name": "Đà Nẵng"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Tịnh Lộc",
+      "busType": "1",
+      "phone": "09012314",
+      "email": "tinhloc@gmail.com",
+      "startime": "13:44",
+      "endTime": "05:00",
+      "startingPoint": {
+        "id": 3,
+        "name": "Buôn Mê Thuột"
+      },
+      "destination": {
+        "id": 4,
+        "name": "Hà Nội"
+      }
+    }
+  ]
+}

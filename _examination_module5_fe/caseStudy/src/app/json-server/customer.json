@@ -1,0 +1,237 @@
+{
+  "bus": [
+    {
+      "id": 1,
+      "name": "Mai Linh",
+      "busType": "0",
+      "phone": "0912058250",
+      "email": "mailinh@gmail.com",
+      "startime": "13:20",
+      "endTime": "15:00",
+      "startingPoint": {
+        "id": 2,
+        "name": "Huế"
+      },
+      "destination": {
+        "id": 1,
+        "name": "Đà Nẵng"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Phương trang",
+      "busType": "1",
+      "phone": "0912058250",
+      "email": "phuongtrang@gmail.com",
+      "startime": "10:00",
+      "endTime": "19:00",
+      "startingPoint":     {
+        "id": 5,
+        "name": "Bình Định"
+      },
+      "destination":  {
+        "id": 5,
+        "name": "Nghệ An"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Tịnh Lộc",
+      "busType": "1",
+      "phone": "0912058250",
+      "email": "tinhloc@gmail.com",
+      "startime": "17:00",
+      "endTime": "05:00",
+      "startingPoint":     {
+        "id": 3,
+        "name": "Buôn Mê Thuột"
+      },
+      "destination":  {
+        "id": 1,
+        "name": "Đà Nẵng"
+      }
+    }
+  ],
+
+
+  "customerTypes": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ],
+  "customerList": [
+    {
+      "id": 2,
+      "code": "KH-0002",
+      "name": "Lê Nhật Hạ",
+      "dayOfBirth": "1989-01-01",
+      "gender": false,
+      "idCard": "11122143344",
+      "phone": "0901021345",
+      "email": "nhattan@gmail.com",
+      "address": "Quảng Bình",
+      "customerType": {
+        "id": "5",
+        "name": "Diamond"
+      }
+    },
+    {
+      "id": 10,
+      "code": "KH-0006",
+      "name": "Phương Linh",
+      "dayOfBirth": "1991-11-11",
+      "gender": "1",
+      "idCard": "12465870000",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "customerType": {
+        "id": 2,
+        "name": "Platinum"
+      }
+    }
+  ],
+  "division": [
+    {
+      "id": 1,
+      "name": "Sale – Marketing"
+    },
+    {
+      "id": 2,
+      "name": "Hành Chính"
+    },
+    {
+      "id": 3,
+      "name": "Phục vụ"
+    },
+    {
+      "id": 4,
+      "name": "Quản lý"
+    }
+  ],
+  "position": [
+    {
+      "id": 1,
+      "name": "Lễ tân"
+    },
+    {
+      "id": 2,
+      "name": "Phục vụ"
+    },
+    {
+      "id": 3,
+      "name": "Chuyên viên"
+    },
+    {
+      "id": 4,
+      "name": "Giám sát"
+    },
+    {
+      "id": 5,
+      "name": "Giám đốc"
+    }
+  ],
+  "eduDegree": [
+    {
+      "id": 1,
+      "name": "Trung cấp"
+    },
+    {
+      "id": 2,
+      "name": "Cao đẳng"
+    },
+    {
+      "id": 3,
+      "name": "Đại học"
+    },
+    {
+      "id": 4,
+      "name": "Sau đại học"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Lê Thành Thật",
+      "dayOfBirth": "1997-01-11",
+      "salary": 700,
+      "idCard": "12465870000",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "division": {
+        "id": 4,
+        "name": "Quản lý"
+      },
+      "position": {
+        "id": 4,
+        "name": "Giám sát"
+      },
+      "eduDegree": {
+        "id": 4,
+        "name": "Sau đại học"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Trần Nguyễn Mộng Du",
+      "dayOfBirth": "1993-12-22",
+      "idCard": "12465870000",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "salary": "900",
+      "division": {
+        "id": 4,
+        "name": "Quản lý"
+      },
+      "position": {
+        "id": 3,
+        "name": "Chuyên viên"
+      },
+      "eduDegree": {
+        "id": 3,
+        "name": "Đại học"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Thái Thùy Linh",
+      "dayOfBirth": "1986-01-04",
+      "idCard": "12465870000",
+      "phone": "0913338888",
+      "email": "nhat@gmail.com",
+      "address": "28 Phan Anh",
+      "salary": "650",
+      "division": {
+        "id": 3,
+        "name": "Phục vụ"
+      },
+      "position": {
+        "id": 4,
+        "name": "Giám sát"
+      },
+      "eduDegree": {
+        "id": 3,
+        "name": "Đại học"
+      }
+    }
+  ]
+}
